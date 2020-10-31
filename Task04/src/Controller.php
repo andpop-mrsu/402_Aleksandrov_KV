@@ -2,20 +2,20 @@
 
 namespace kirill\ticTacToe\Controller;
 
-    use kirill\ticTacToe\Model\Board as Board;
-    use Exception as Exception;
-    use LogicException as LogicException;
+use kirill\ticTacToe\Model\Board as Board;
+use Exception as Exception;
+use LogicException as LogicException;
 
-    use function cli\prompt;
-    use function cli\line;
-    use function cli\out;
+use function cli\prompt;
+use function cli\line;
+use function cli\out;
 
-    use function kirill\ticTacToe\View\showGameBoard;
-    use function kirill\ticTacToe\View\showMessage;
-    use function kirill\ticTacToe\View\getValue;
+use function kirill\ticTacToe\View\showGameBoard;
+use function kirill\ticTacToe\View\showMessage;
+use function kirill\ticTacToe\View\getValue;
 
-    use const kirill\ticTacToe\Model\PLAYER_X_MARKUP;
-    use const kirill\ticTacToe\Model\PLAYER_O_MARKUP;
+use const kirill\ticTacToe\Model\PLAYER_X_MARKUP;
+use const kirill\ticTacToe\Model\PLAYER_O_MARKUP;
 
 function startGame()
 {
@@ -37,7 +37,8 @@ function startGame()
     }
 }
 
-function play($gameBoard) {
+function play($gameBoard)
+{
     $canContinue = true;
     do {
         initialize($gameBoard);
@@ -68,7 +69,7 @@ function gameLoop($board)
     date_default_timezone_set("Europe/Moscow");
     $gameData = date("d") . "." . date("m") . "." . date("Y");
     $gameTime = date("H") . ":" . date("i") . ":" . date("s");
-    $playerName =  $board->getUser();
+    $playerName = $board->getUser();
     $size = $board->getDimension();
 
     $db->exec("INSERT INTO gamesInfo (
@@ -109,11 +110,10 @@ function gameLoop($board)
     } while (!$stopGame);
 
     $temp_mark = $board->getUserMarkup();
-    if ($endGameMsg == "Player '$temp_mark' wins the game."){
+    if ($endGameMsg == "Player '$temp_mark' wins the game.") {
         $result = 'ПОБЕДА';
         $board->endGame($gameId, $result, $db);
-    }
-    else{
+    } else {
         $result = 'ПОРАЖЕНИЕ';
         $board->endGame($gameId, $result, $db);
     }
@@ -160,14 +160,14 @@ function getCoords($board)
     $markup = $board->getUserMarkup();
     $name = $board->getUser();
     $coords = getValue("Enter coords for player '$markup' (player: '$name' ) (enter through : )");
-    if ($coords == "--exit"){
+    if ($coords == "--exit") {
         exit("Thanks for using");
     }
     $coords = explode(":", $coords);
-    $coords[0] = $coords[0]-1;
+    $coords[0] = $coords[0] - 1;
     if (isset($coords[1])) {
-        $coords[1] = $coords[1]-1;
-    } else {    
+        $coords[1] = $coords[1] - 1;
+    } else {
         throw new Exception("No second coordinate. Please try again.");
     }
     return $coords;
