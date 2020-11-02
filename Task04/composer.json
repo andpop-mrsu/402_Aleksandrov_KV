@@ -1,0 +1,24 @@
+{
+    "name": "kirillalex/tic-tac-toe",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Kirill",
+            "email": "kirill.alex.of@gmail.com"
+        }
+    ],
+    "description": "",
+    "require": {
+        "wp-cli/php-cli-tools": "^0.11.11"
+    },
+    "bin": [
+        "bin/tic-tac-toe"
+    ],
+    "autoload": {
+        "files": [
+            "src/Controller.php",
+            "src/View.php",
+            "src/Model.php"
+        ]
+    }
+}
