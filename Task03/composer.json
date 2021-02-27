@@ -1,24 +1,18 @@
 {
-    "name": "kirillalex/tic-tac-toe",
+    "name": "kirill/lab3",
     "type": "project",
-    "authors": [
-        {
-            "name": "Kirill",
-            "email": "kirill.alex.of@gmail.com"
-        }
-    ],
-    "description": "",
     "require": {
-        "wp-cli/php-cli-tools": "^0.11.11"
+        "phpunit/phpunit": "^9.5"
     },
-    "bin": [
-        "bin/tic-tac-toe"
-    ],
     "autoload": {
+        "psr-4": {
+            "App\\": [
+                "src/Queue",
+                "src/Stack"
+            ]
+        },
         "files": [
-            "src/Controller.php",
-            "src/View.php",
-            "src/Model.php"
+            "src/index.php"
         ]
     }
 }
